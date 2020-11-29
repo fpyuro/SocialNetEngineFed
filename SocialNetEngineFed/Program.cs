@@ -55,7 +55,7 @@ namespace SocialNetEngineFed
 
         class Message
         {
-            private string message;
+            private string message { get; }
             public User User { get; private set; }
             public DateTime Date { get; private set; }
             public Message(User sr, DateTime date, string msg)
@@ -66,13 +66,13 @@ namespace SocialNetEngineFed
             } //6
             public override string ToString() //
             {
-                return $"{Date:yyyy'-'MM'-'dd'T'HH':'mm':'ss} {User.ID}{message}";
+                return $"{Date:yyyy'-'MM'-'dd'T'HH':'mm':'ss} {User.ID}  {message}";
             }
         }
 
         class Messages
         {
-            private Message[] mssgs { get; set; }
+            private Message[] mssgs { get; }
             public Messages(uint size) { mssgs = new Message[size]; } //
             public void Add(Message msg) //добавляем сообщение в массив сообщений
             {
@@ -88,13 +88,21 @@ namespace SocialNetEngineFed
 
             public Message[] ShowMessage(User sr)  //выбирает сообщения одного пользователя
             {
-                Message[] messOfUser = new Message[] { };
+                int counter = 0;
+                for(int i = 0; i<mssgs.Length; ++i)
+                {
+                    if (mssgs[i].User == sr)
+                    {
+                        counter++;
+                    }
+                }
+                Message[] messOfUser = new Message[counter];
                 for (int i = 0, j = 0; i < mssgs.Length; ++i)
                 {
                     if (mssgs[i].User == sr)
                     {
                         messOfUser[j] = mssgs[i];
-                        ++j;
+                        j++;
                     }
                 }
                 return messOfUser;
@@ -105,8 +113,8 @@ namespace SocialNetEngineFed
 
         class SocialNet
         {
-            private Users users { get; set; }
-            private Messages messages;
+            private Users users { get; }
+            private Messages messages { get; }
             public SocialNet(uint size)
             {
                 this.users = new Users(size);
@@ -124,7 +132,11 @@ namespace SocialNetEngineFed
             //4
             public void ShowMessage(User sr)
             {
-
+                Message[] messOfUser = messages.ShowMessage(sr);
+                foreach(Message i in messOfUser)
+                {
+                    Console.WriteLine(i.ToString());
+                }
             }
             //50
             // private User[] NoDuplicates(User[] arr) { } //21
@@ -139,8 +151,6 @@ namespace SocialNetEngineFed
             User petya = new User("petya");
             User sasha = new User("sasha");
             User cool1234 = new User("cool1234");
-
-            Array f = new Array[5];
 
             SocialNet social = new SocialNet(10);
             social.AddUsers(vasya, new User[] { kolya, petya, sasha });
