@@ -130,18 +130,14 @@ namespace SocialNetEngineFed
                     Console.WriteLine(i.ToString());
                 }
             }
-            //
             //private User[] NoDuplicates(User[] arr) 
             //{
             //
             //}
-            //    
             //public uint Handshake(User first, User second)
             //{
             //
             //}
-                //
-
         }
 
         static void Main(string[] args)
