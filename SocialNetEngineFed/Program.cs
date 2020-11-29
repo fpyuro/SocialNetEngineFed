@@ -10,7 +10,6 @@ namespace SocialNetEngineFed
             public string ID { get; private set; }
             public User(string id) { this.ID = id; } //конструктор создает юзера
         }
-
         class Friends
         {
             public User Key { get; private set; } //хранится пользователь
@@ -21,7 +20,6 @@ namespace SocialNetEngineFed
                 this.Value = arr;
             } //
         }
-
         class Users
         {
             private Friends[] frnds;
@@ -52,7 +50,6 @@ namespace SocialNetEngineFed
                 return localArr;
             }
         }
-
         class Message
         {
             private string message { get; }
@@ -69,7 +66,6 @@ namespace SocialNetEngineFed
                 return $"{Date:yyyy'-'MM'-'dd'T'HH':'mm':'ss} {User.ID}  {message}";
             }
         }
-
         class Messages
         {
             private Message[] mssgs { get; }
@@ -85,7 +81,6 @@ namespace SocialNetEngineFed
                     }
                 }
             }
-
             public Message[] ShowMessage(User sr)  //выбирает сообщения одного пользователя
             {
                 int counter = 0;
@@ -107,10 +102,7 @@ namespace SocialNetEngineFed
                 }
                 return messOfUser;
             }
-
-
         }
-
         class SocialNet
         {
             private Users users { get; }
@@ -129,7 +121,7 @@ namespace SocialNetEngineFed
             {
                 messages.Add(msg);
             }
-            //4
+            //
             public void ShowMessage(User sr)
             {
                 Message[] messOfUser = messages.ShowMessage(sr);
@@ -138,9 +130,17 @@ namespace SocialNetEngineFed
                     Console.WriteLine(i.ToString());
                 }
             }
-            //50
-            // private User[] NoDuplicates(User[] arr) { } //21
-            // public uint Handshake(User first, User second) { }//18
+            //
+            //private User[] NoDuplicates(User[] arr) 
+            //{
+            //
+            //}
+            //    
+            //public uint Handshake(User first, User second)
+            //{
+            //
+            //}
+                //
 
         }
 
